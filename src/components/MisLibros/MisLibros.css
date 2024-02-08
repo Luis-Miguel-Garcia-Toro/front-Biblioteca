@@ -1,7 +1,16 @@
 .mis-libros-container {
   text-align: center;
-  margin: 20px;
+  margin: 20px auto; /* Alinea el contenedor al centro y ajusta los márgenes */
+  width: 80%;
+  max-width: 600px; /* Establece un ancho máximo para el contenedor */
+  padding: 20px; /* Agrega relleno al contenedor */
+  border: 1px solid #ccc; /* Agrega un borde al contenedor */
+  border-radius: 10px; /* Agrega bordes redondeados al contenedor */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra al contenedor */
 }
+
+/* Resto de estilos sin cambios */
+
 
 .agregar-libro {
   margin-bottom: 20px;
@@ -10,23 +19,23 @@
   align-items: center;
 }
 
-.agregar-libro input {
+.input-field {
   margin: 5px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
-  /* Cambia el ancho al 100% para que se ajuste al contenedor */
 }
 
 .agregar-button {
   padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #557eaa;
+  color: #4f2dc7;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  margin-bottom: 12px;
 }
 
 p {

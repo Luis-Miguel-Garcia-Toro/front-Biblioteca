@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import "./MisLibros.css" // Importa el archivo de estilos CSS
-import { sendBookData } from '../../services/api/books.js'
+import "./MisLibros.css"; // Importa el archivo de estilos CSS
+import { sendBookData } from '../../services/api/books.js';
 import { useForm } from "../../hooks";
-
 
 function MisLibros() {
   const { serializefiles } = useForm();
@@ -27,7 +26,7 @@ function MisLibros() {
 
   const handleSave = async (ev) => {
     ev.preventDefault();
-    console.log(ev.target)
+    console.log(ev.target);
     const formData = serializefiles(ev.target);
     try {
       const token = localStorage.getItem("token");
@@ -38,7 +37,7 @@ function MisLibros() {
       if (!response) {
         throw new Error(`HTTP error!`);
       }
-      console.log(response)
+      console.log(response);
     } catch (error) {
       console.error("Error al guardar:", error.message);
       if (error.response) {
@@ -46,19 +45,20 @@ function MisLibros() {
       }
       setError(error.message);
     }
-  }
-
+  };
 
   return (
     <div className="mis-libros-container">
       <form onSubmit={handleSave}>
         <h1>Mis Libros</h1>
-        <p>Recuerde subir la imagen en un formato de 240 × 360 píxeles,para una mejor visualización</p>
+        <p>Recuerde subir la imagen en un formato de 240 × 360 píxeles, para una mejor visualización</p>
         <div className="agregar-libro">
           <input
             type="text"
             id="photo"
             name="photo"
+            placeholder="URL de la imagen"
+            className="input-field"
           />
           {photo && (
             <img src={URL.createObjectURL(photo)} alt="Portada del libro" />
@@ -68,31 +68,36 @@ function MisLibros() {
             id='book_title'
             name="book_title"
             placeholder="Titulo del libro"
+            className="input-field"
           />
           <input
             type="text"
             id='book_sypnosis'
             name="book_sypnosis"
-            placeholder="Descripcion del libro"
+            placeholder="Descripción del libro"
+            className="input-field"
           />
           <input
             type="text"
             id='book_author'
             name="book_author"
             placeholder="Autor del libro"
+            className="input-field"
           />
           <input
             type="text"
             id='book_frontPage'
             name="book_frontPage"
             placeholder="Portada del libro"
+            className="input-field"
           />
         </div>
-        <button type='submit'  >
+        <button type='submit' className="agregar-button">
           Agregar Libro
         </button>
-      </form >
+      </form>
     </div>
   );
 }
+
 export default MisLibros;

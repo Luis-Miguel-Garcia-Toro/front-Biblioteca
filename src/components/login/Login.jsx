@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import axios from "axios";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-import axios from "axios";
 import endPoints from "../../services/api";
 
 function Login() {
@@ -13,7 +13,7 @@ function Login() {
 
   const handleLogin = async (ev) => {
     ev.preventDefault();
-    const formData = serialize(ev.target); // Utiliza serialize para obtener los datos del formulario
+    const formData = serialize(ev.target);
     try {
       const response = await axios.post(endPoints.usuario.getLogin, formData, {
         userEmail: userEmail,
@@ -34,15 +34,14 @@ function Login() {
       console.error("Error al iniciar sesión:", error);
     }
   };
+
   return (
-    <div className="bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500 min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-3/4 md:w-1/2 lg:w-1/3 max-w-md">
-        <div className="text-center">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-blue-600">
-            Iniciar Sesión
-          </h2>
-        </div>
-        <form className="mt-4" onSubmit={handleLogin}>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white rounded-lg shadow-md w-full sm:w-3/4 md:w-1/2 lg:w-1/3 max-w-md p-6">
+        <h2 className="text-3xl text-center font-semibold text-gray-800 mb-6">
+          Iniciar Sesión
+        </h2>
+        <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label
               htmlFor="correoElectronico"
@@ -54,7 +53,7 @@ function Login() {
               type="email"
               id="correoElectronico"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Correo Electrónico"
+              placeholder="example@gmail.com"
               name="user_email"
               onChange={(e) => setUserEmail(e.target.value)}
             />
@@ -70,20 +69,31 @@ function Login() {
               type="password"
               id="contrasena"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Contraseña"
+              placeholder="******"
               name="user_password"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="flex items-center justify-between mt-2 sm:mt-4">
+          <div className="flex items-center justify-between mt-4">
             <button
-              type="submit"
+              type="button"
               className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
             >
-              Iniciar Sesión
+              Iniciar sesión
             </button>
-            <p>¿No tienes cuenta?</p>
-            <Link to="/register"> Registrarme </Link>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <p style={{ marginBottom: "0" }}>¿No tienes cuenta?</p>
+              <Link to="/register" className="text-blue-500 hover:underline">
+                Registrarme
+              </Link>
+            </div>
           </div>
         </form>
       </div>
